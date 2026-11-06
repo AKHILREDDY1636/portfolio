@@ -1,0 +1,720 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Akhil Reddy Donakonda</title>
+<meta name="description" content="Full Stack Developer building cloud telephony, event-driven systems and AI voice products. Node.js, React, RabbitMQ, Redis, MongoDB, Asterisk, LLMs.">
+<meta property="og:title" content="Akhil Reddy Donakonda — Full Stack Developer">
+<meta property="og:description" content="Event-driven telephony at 1.1M+ calls/day, a predictive dialer scaled 50×, real-time AI voice bots.">
+<meta property="og:type" content="website">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'><rect width='64' height='64' rx='14' fill='%230f172a'/><text x='50%' y='56%' text-anchor='middle' dominant-baseline='middle' font-family='monospace' font-weight='700' font-size='28' fill='%2338bdf8'>AR</text></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#f7f8fa; --bg-2:#ffffff; --ink:#0f172a; --ink-2:#334155; --muted:#64748b;
+  --line:#e2e8f0; --accent:#0284c7; --accent-2:#0ea5e9; --accent-soft:#e0f2fe;
+  --warm:#d97706; --warm-soft:#fef3c7; --good:#059669; --good-soft:#d1fae5;
+  --node:#ffffff; --node-line:#cbd5e1; --shadow:0 1px 2px rgba(15,23,42,.04),0 8px 24px rgba(15,23,42,.06);
+  --mono:'JetBrains Mono',ui-monospace,SFMono-Regular,Menlo,monospace;
+  --sans:'Inter',system-ui,-apple-system,Segoe UI,Roboto,sans-serif;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#0b1120; --bg-2:#111a2e; --ink:#e2e8f0; --ink-2:#cbd5e1; --muted:#94a3b8;
+    --line:#1e293b; --accent:#38bdf8; --accent-2:#7dd3fc; --accent-soft:#0c2a43;
+    --warm:#fbbf24; --warm-soft:#3a2a07; --good:#34d399; --good-soft:#0a3326;
+    --node:#0f1a2f; --node-line:#2b3a55; --shadow:0 1px 2px rgba(0,0,0,.3),0 8px 24px rgba(0,0,0,.25);
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#0b1120; --bg-2:#111a2e; --ink:#e2e8f0; --ink-2:#cbd5e1; --muted:#94a3b8;
+  --line:#1e293b; --accent:#38bdf8; --accent-2:#7dd3fc; --accent-soft:#0c2a43;
+  --warm:#fbbf24; --warm-soft:#3a2a07; --good:#34d399; --good-soft:#0a3326;
+  --node:#0f1a2f; --node-line:#2b3a55; --shadow:0 1px 2px rgba(0,0,0,.3),0 8px 24px rgba(0,0,0,.25);
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:72px}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.65 var(--sans);-webkit-font-smoothing:antialiased;overflow-x:hidden}
+a{color:var(--accent);text-decoration:none}
+a:hover{text-decoration:underline}
+.wrap{max-width:1080px;margin:0 auto;padding:0 20px}
+code,.mono{font-family:var(--mono)}
+
+/* nav */
+header.nav{position:sticky;top:0;z-index:20;background:color-mix(in srgb,var(--bg) 85%,transparent);backdrop-filter:saturate(1.4) blur(10px);border-bottom:1px solid var(--line)}
+.nav .wrap{display:flex;align-items:center;justify-content:space-between;height:60px;gap:16px}
+.brand{font-family:var(--mono);font-weight:600;color:var(--ink);letter-spacing:-.01em}
+.brand span{color:var(--accent)}
+.nav ul{display:flex;gap:22px;list-style:none;margin:0;padding:0}
+.nav ul a{color:var(--muted);font-size:14px;font-weight:500}
+.nav ul a:hover{color:var(--ink);text-decoration:none}
+.nav-r{display:flex;align-items:center;gap:10px}
+.icon-btn{background:none;border:1px solid var(--line);color:var(--ink-2);width:36px;height:36px;border-radius:9px;cursor:pointer;display:grid;place-items:center}
+.icon-btn:hover{border-color:var(--accent)}
+#menuBtn{display:none}
+@media (max-width:820px){
+  .nav ul{display:none;position:absolute;top:60px;left:0;right:0;flex-direction:column;gap:0;background:var(--bg-2);border-bottom:1px solid var(--line);padding:6px 20px 14px}
+  .nav ul.open{display:flex}
+  .nav ul a{display:block;padding:10px 0;font-size:15px}
+  #menuBtn{display:grid}
+}
+
+/* hero */
+.hero{padding:88px 0 56px}
+.eyebrow{font-family:var(--mono);font-size:13px;color:var(--accent);letter-spacing:.04em;margin:0 0 18px;display:flex;align-items:center;gap:10px}
+.eyebrow .dot{width:8px;height:8px;border-radius:50%;background:var(--good);box-shadow:0 0 0 4px var(--good-soft)}
+h1{font-size:clamp(38px,6vw,64px);line-height:1.05;letter-spacing:-.035em;margin:0 0 20px;font-weight:800}
+h1 .grad{background:linear-gradient(90deg,var(--accent),var(--accent-2));-webkit-background-clip:text;background-clip:text;color:transparent}
+.lede{font-size:clamp(17px,2vw,20px);color:var(--ink-2);max-width:720px;margin:0 0 30px}
+.cta{display:flex;flex-wrap:wrap;gap:12px}
+.btn{display:inline-flex;align-items:center;gap:8px;padding:11px 18px;border-radius:10px;font-weight:600;font-size:15px;border:1px solid var(--line);color:var(--ink);background:var(--bg-2)}
+.btn:hover{text-decoration:none;border-color:var(--accent)}
+.btn.primary{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+.btn.primary:hover{opacity:.9}
+
+/* stats */
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--line);border:1px solid var(--line);border-radius:14px;overflow:hidden;margin-top:56px}
+.stat{background:var(--bg-2);padding:22px 20px}
+.stat b{display:block;font-size:30px;letter-spacing:-.03em;font-weight:800;line-height:1.1}
+.stat span{font-size:13.5px;color:var(--muted)}
+@media (max-width:760px){.stats{grid-template-columns:repeat(2,1fr)}}
+
+/* sections */
+section{padding:72px 0;border-top:1px solid var(--line)}
+.sec-h{display:flex;align-items:baseline;gap:14px;margin-bottom:10px}
+.sec-h .n{font-family:var(--mono);color:var(--accent);font-size:14px}
+h2{font-size:clamp(26px,3.4vw,34px);letter-spacing:-.025em;margin:0;line-height:1.15}
+.sec-sub{color:var(--muted);max-width:720px;margin:0 0 36px}
+
+/* case studies */
+.case{background:var(--bg-2);border:1px solid var(--line);border-radius:16px;padding:30px;margin-bottom:26px;box-shadow:var(--shadow)}
+.case-top{display:flex;justify-content:space-between;align-items:flex-start;gap:16px;flex-wrap:wrap;margin-bottom:6px}
+.case h3{font-size:22px;letter-spacing:-.02em;margin:0;line-height:1.25}
+.metric{font-family:var(--mono);font-size:13px;font-weight:600;color:var(--good);background:var(--good-soft);padding:5px 10px;border-radius:999px;white-space:nowrap}
+.case .problem{color:var(--ink-2);margin:10px 0 18px;max-width:820px}
+.case .grid{display:grid;grid-template-columns:1fr 1fr;gap:28px;margin-top:20px}
+@media (max-width:820px){.case .grid{grid-template-columns:1fr}.case{padding:22px 18px}}
+.case h4{font-size:12px;font-family:var(--mono);text-transform:uppercase;letter-spacing:.08em;color:var(--muted);margin:0 0 10px;font-weight:600}
+.case ul{margin:0;padding-left:18px}
+.case li{margin:0 0 8px;color:var(--ink-2)}
+.case li b{color:var(--ink)}
+.tags{display:flex;flex-wrap:wrap;gap:6px;margin-top:18px}
+.tag{font-family:var(--mono);font-size:12px;padding:3px 9px;border-radius:6px;background:var(--accent-soft);color:var(--accent)}
+.diagram{margin:18px 0 4px;border:1px dashed var(--node-line);border-radius:12px;padding:14px;background:var(--bg);overflow-x:auto}
+.diagram svg{display:block;width:100%;min-width:640px;height:auto}
+.diagram .cap{font-size:12.5px;color:var(--muted);margin:8px 2px 0;font-family:var(--mono)}
+/* svg tokens */
+svg .nd{fill:var(--node);stroke:var(--node-line);stroke-width:1.2}
+svg .nd.hi{stroke:var(--accent);stroke-width:1.6;fill:var(--accent-soft)}
+svg .nd.fast{stroke:var(--good);fill:var(--good-soft)}
+svg .nd.slow{stroke:var(--warm);fill:var(--warm-soft)}
+svg .grp{fill:none;stroke:var(--node-line);stroke-dasharray:4 4}
+svg text{font-family:var(--sans);font-size:12.5px;fill:var(--ink)}
+svg text.s{font-size:10.5px;fill:var(--muted)}
+svg text.lbl{font-family:var(--mono);font-size:10.5px;fill:var(--muted);letter-spacing:.06em}
+svg text.b{font-weight:600}
+svg .e{stroke:var(--muted);stroke-width:1.3;fill:none}
+svg .e.a{stroke:var(--accent)}
+svg .e.d{stroke-dasharray:4 3}
+svg .ah{fill:var(--muted)}
+svg .ah.a{fill:var(--accent)}
+
+/* services map */
+.svc-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:18px}
+.svc{background:var(--bg-2);border:1px solid var(--line);border-radius:14px;padding:20px}
+.svc h3{margin:0 0 4px;font-size:16px}
+.svc p{margin:0 0 14px;font-size:14px;color:var(--muted)}
+.repo{display:grid;grid-template-columns:1fr auto;align-items:center;gap:10px;font-family:var(--mono);font-size:12.5px;padding:5px 0;border-top:1px solid var(--line)}
+.repo:first-of-type{border-top:0}
+.repo .bar{grid-column:1/-1;height:4px;border-radius:2px;background:var(--line);overflow:hidden;margin-top:-2px}
+.repo .bar i{display:block;height:100%;background:var(--accent);border-radius:2px}
+.repo em{font-style:normal;color:var(--muted)}
+.chart-card{background:var(--bg-2);border:1px solid var(--line);border-radius:14px;padding:22px;margin-bottom:22px}
+.chart-card h3{margin:0;font-size:16px}
+.chart-card p{margin:2px 0 12px;font-size:13.5px;color:var(--muted)}
+#activity{width:100%;height:auto;display:block}
+#activity rect.bar{fill:var(--accent);opacity:.85}
+#activity rect.bar:hover{opacity:1}
+#activity text{font-family:var(--mono);font-size:10px;fill:var(--muted)}
+#activity text.v{fill:var(--ink-2);font-weight:600}
+#activity line{stroke:var(--line)}
+
+/* experience */
+.tl{position:relative;padding-left:26px}
+.tl:before{content:"";position:absolute;left:6px;top:8px;bottom:8px;width:2px;background:var(--line)}
+.job{position:relative;margin-bottom:34px}
+.job:before{content:"";position:absolute;left:-26px;top:7px;width:14px;height:14px;border-radius:50%;background:var(--bg);border:3px solid var(--accent)}
+.job.past:before{border-color:var(--node-line)}
+.job-h{display:flex;justify-content:space-between;flex-wrap:wrap;gap:4px 16px}
+.job h3{margin:0;font-size:18px;letter-spacing:-.01em}
+.job .when{font-family:var(--mono);font-size:13px;color:var(--muted)}
+.job .org{color:var(--accent);font-weight:600;font-size:15px}
+.job p,.job li{color:var(--ink-2)}
+.job ul{padding-left:18px;margin:8px 0 0}
+.job li{margin-bottom:6px}
+
+/* skills */
+.skills{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:16px}
+.sk{background:var(--bg-2);border:1px solid var(--line);border-radius:12px;padding:18px}
+.sk h3{font-size:13px;font-family:var(--mono);text-transform:uppercase;letter-spacing:.08em;color:var(--muted);margin:0 0 12px;font-weight:600}
+.chips{display:flex;flex-wrap:wrap;gap:6px}
+.chip{font-size:13px;padding:4px 10px;border-radius:7px;border:1px solid var(--line);background:var(--bg);color:var(--ink-2)}
+
+/* projects */
+.proj{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:18px}
+.pcard{background:var(--bg-2);border:1px solid var(--line);border-radius:14px;padding:22px;display:flex;flex-direction:column}
+.pcard h3{margin:0 0 8px;font-size:17px}
+.pcard p{color:var(--ink-2);margin:0 0 14px;flex:1}
+
+/* contact */
+.contact{text-align:center;padding:90px 0}
+.contact h2{font-size:clamp(28px,4vw,42px);margin-bottom:14px}
+.contact p{color:var(--ink-2);max-width:560px;margin:0 auto 28px}
+.contact .cta{justify-content:center}
+footer{border-top:1px solid var(--line);padding:26px 0;color:var(--muted);font-size:13px}
+footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px}
+
+.reveal{opacity:0;transform:translateY(14px);transition:opacity .6s ease,transform .6s ease}
+.reveal.in{opacity:1;transform:none}
+@media (prefers-reduced-motion:reduce){.reveal{opacity:1;transform:none;transition:none}html{scroll-behavior:auto}}
+</style>
+</head>
+<body>
+
+<header class="nav">
+  <div class="wrap">
+    <a class="brand" href="#top">akhil<span>.</span>reddy</a>
+    <ul id="menu">
+      <li><a href="#work">Work</a></li>
+      <li><a href="#platform">Platform</a></li>
+      <li><a href="#experience">Experience</a></li>
+      <li><a href="#skills">Skills</a></li>
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+    <div class="nav-r">
+      <button class="icon-btn" id="themeBtn" aria-label="Toggle colour theme" title="Toggle theme">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>
+      </button>
+      <button class="icon-btn" id="menuBtn" aria-label="Open menu">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+      </button>
+    </div>
+  </div>
+</header>
+
+<main id="top">
+<!-- HERO -->
+<div class="hero">
+  <div class="wrap">
+    <p class="eyebrow"><span class="dot"></span>Hyderabad, India · Full Stack Developer · Open to opportunities</p>
+    <h1>Akhil Reddy Donakonda.<br><span class="grad">I build systems that take a million calls a day.</span></h1>
+    <p class="lede">Full stack developer with nearly 6 years of experience, the last 4 on cloud telephony SaaS. I design event-driven backends in Node.js, RabbitMQ, Redis and MongoDB, build real-time voice and AI products on Asterisk and LLMs, and ship the React interfaces agents use all day. I usually own a feature end to end, from the idea to production.</p>
+    <div class="cta">
+      <a class="btn primary" href="#work">See the work →</a>
+      <a class="btn" href="Akhil_Reddy_Resume.pdf" target="_blank" rel="noopener">Résumé (PDF)</a>
+      <a class="btn" href="https://github.com/akhilreddy1636" target="_blank" rel="noopener">GitHub</a>
+      <a class="btn" href="mailto:akhilreddy.donakonda@gmail.com">Email</a>
+    </div>
+
+    <div class="stats">
+      <div class="stat"><b>1.1M+</b><span>calls per day across the platforms I work on</span></div>
+      <div class="stat"><b>50×</b><span>predictive dialer scale-up, 10K → 500K calls/day</span></div>
+      <div class="stat"><b>~5M</b><span>post-call events per day on the architecture I designed</span></div>
+      <div class="stat"><b>3,800+</b><span>commits across 39 production repositories</span></div>
+    </div>
+  </div>
+</div>
+
+<!-- CASE STUDIES -->
+<section id="work">
+  <div class="wrap">
+    <div class="sec-h"><span class="n">01</span><h2>Selected work</h2></div>
+    <p class="sec-sub">Production systems at Matr Innovations (Doosra &amp; Alohaa cloud telephony), serving 50+ businesses and 1,000+ agents. The code is proprietary, so these are design-level write-ups of how each system works and why it is built that way.</p>
+
+    <!-- 1 -->
+    <article class="case reveal">
+      <div class="case-top">
+        <h3>Event-driven post-call architecture</h3>
+        <span class="metric">~5M messages / day</span>
+      </div>
+      <p class="problem">Every call ends in work: billing, live metrics, uploading the recording, AI analysis, customer webhooks. Before this design, five call flows each did that work inline and in their own way. A slow S3 upload or a customer's webhook endpoint could hold up the dialer, and billing logic existed in five copies.</p>
+      <div class="diagram">
+        <svg viewBox="0 0 760 300" role="img" aria-label="Five call flows publish to one topic exchange that routes to fast-lane and slow-lane consumers, with delayed retries and a failed-events store">
+          <defs>
+            <marker id="ar1" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path class="ah" d="M0,0L10,5L0,10z"/></marker>
+            <marker id="ar1a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path class="ah a" d="M0,0L10,5L0,10z"/></marker>
+          </defs>
+          <text class="lbl" x="10" y="16">CALL FLOWS</text>
+          <g>
+            <rect class="nd" x="10" y="28" width="130" height="32" rx="7"/><text x="75" y="48" text-anchor="middle">Outbound</text>
+            <rect class="nd" x="10" y="70" width="130" height="32" rx="7"/><text x="75" y="90" text-anchor="middle">Inbound</text>
+            <rect class="nd" x="10" y="112" width="130" height="32" rx="7"/><text x="75" y="132" text-anchor="middle">Predictive</text>
+            <rect class="nd" x="10" y="154" width="130" height="32" rx="7"/><text x="75" y="174" text-anchor="middle">Click-to-call</text>
+            <rect class="nd" x="10" y="196" width="130" height="32" rx="7"/><text x="75" y="216" text-anchor="middle">Voice bot</text>
+          </g>
+          <path class="e" d="M140 44 C190 44,190 128,240 128" marker-end="url(#ar1)"/>
+          <path class="e" d="M140 86 C190 86,190 128,240 128"/>
+          <path class="e" d="M140 128 L240 128"/>
+          <path class="e" d="M140 170 C190 170,190 128,240 128"/>
+          <path class="e" d="M140 212 C190 212,190 128,240 128"/>
+          <rect class="nd hi" x="242" y="98" width="170" height="60" rx="9"/>
+          <text class="b" x="327" y="123" text-anchor="middle">Topic exchange</text>
+          <text class="s" x="327" y="141" text-anchor="middle">call.&lt;flow&gt;.&lt;event&gt;</text>
+
+          <rect class="grp" x="468" y="14" width="282" height="96" rx="10"/>
+          <text class="lbl" x="480" y="32">FAST LANE · never blocked</text>
+          <rect class="nd fast" x="480" y="44" width="125" height="52" rx="7"/><text class="b" x="542" y="66" text-anchor="middle">Billing</text><text class="s" x="542" y="83" text-anchor="middle">idempotent, atomic</text>
+          <rect class="nd fast" x="615" y="44" width="125" height="52" rx="7"/><text class="b" x="677" y="66" text-anchor="middle">Live metrics</text><text class="s" x="677" y="83" text-anchor="middle">dashboards</text>
+
+          <rect class="grp" x="468" y="124" width="282" height="104" rx="10"/>
+          <text class="lbl" x="480" y="142">SLOW LANE · isolated</text>
+          <rect class="nd slow" x="480" y="152" width="82" height="64" rx="7"/><text x="521" y="180" text-anchor="middle">S3</text><text class="s" x="521" y="197" text-anchor="middle">recording</text>
+          <rect class="nd slow" x="569" y="152" width="82" height="64" rx="7"/><text x="610" y="180" text-anchor="middle">AI</text><text class="s" x="610" y="197" text-anchor="middle">analysis</text>
+          <rect class="nd slow" x="658" y="152" width="82" height="64" rx="7"/><text x="699" y="180" text-anchor="middle">Customer</text><text class="s" x="699" y="197" text-anchor="middle">webhooks</text>
+
+          <path class="e a" d="M412 120 C440 120,440 70,468 70" marker-end="url(#ar1a)"/>
+          <path class="e a" d="M412 138 C440 138,440 184,468 184" marker-end="url(#ar1a)"/>
+
+          <rect class="nd" x="480" y="248" width="125" height="40" rx="7"/><text x="542" y="267" text-anchor="middle">Delayed exchange</text><text class="s" x="542" y="281" text-anchor="middle">per-queue retry + backoff</text>
+          <rect class="nd" x="625" y="248" width="125" height="40" rx="7"/><text x="687" y="267" text-anchor="middle">Failed-events store</text><text class="s" x="687" y="281" text-anchor="middle">inspect &amp; replay</text>
+          <path class="e d" d="M542 228 L542 248" marker-end="url(#ar1)"/>
+          <path class="e d" d="M605 268 L625 268" marker-end="url(#ar1)"/>
+        </svg>
+        <p class="cap">Publishers fire and forget. Each consumer has its own queue, its own retry policy and its own failure store.</p>
+      </div>
+      <div class="grid">
+        <div>
+          <h4>What I did</h4>
+          <ul>
+            <li><b>Designed the architecture</b> and moved all five call flows onto one RabbitMQ topic exchange, with routing keys per flow and per event.</li>
+            <li>Split <b>fast lanes</b> (billing, metrics) from <b>slow lanes</b> (S3, AI, webhooks) so the dialer never waits on a consumer.</li>
+            <li>Shipped the first flow myself, then led the team through migrating the other four and <b>mentored 3 junior developers</b> along the way.</li>
+          </ul>
+        </div>
+        <div>
+          <h4>Correctness under failure</h4>
+          <ul>
+            <li><b>Idempotent billing handlers</b> with atomic credit deduction, so a redelivered message never charges twice. These replaced five duplicated billing implementations.</li>
+            <li><b>Per-queue retries</b> through a delayed-message exchange, and a <b>failed-events store</b> for replay. Events no longer disappear silently.</li>
+          </ul>
+        </div>
+      </div>
+      <div class="tags"><span class="tag">RabbitMQ</span><span class="tag">Topic exchange</span><span class="tag">Idempotency</span><span class="tag">Node.js</span><span class="tag">MongoDB</span><span class="tag">Observability</span></div>
+    </article>
+
+    <!-- 2 -->
+    <article class="case reveal">
+      <div class="case-top">
+        <h3>Predictive dialer, built from scratch</h3>
+        <span class="metric">10K → 500K calls/day · 750K peak</span>
+      </div>
+      <p class="problem">A predictive dialer calls leads before an agent is free and connects only the calls that get answered. Dial too little and agents sit idle. Dial too much and calls drop, or one tenant uses up the carrier capacity that every other tenant shares.</p>
+      <div class="diagram">
+        <svg viewBox="0 0 760 210" role="img" aria-label="Campaign leads flow through a queue controller and a Redis per-tenant limiter onto a pool of Asterisk PBX nodes, with answered calls bridged to agents">
+          <defs>
+            <marker id="ar2" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path class="ah" d="M0,0L10,5L0,10z"/></marker>
+            <marker id="ar2a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path class="ah a" d="M0,0L10,5L0,10z"/></marker>
+          </defs>
+          <rect class="nd" x="10" y="60" width="120" height="56" rx="8"/><text class="b" x="70" y="84" text-anchor="middle">Campaigns</text><text class="s" x="70" y="101" text-anchor="middle">leads · retries · DNC</text>
+          <path class="e" d="M130 88 L170 88" marker-end="url(#ar2)"/>
+          <rect class="nd hi" x="172" y="52" width="150" height="72" rx="8"/><text class="b" x="247" y="80" text-anchor="middle">Queue controller</text><text class="s" x="247" y="97" text-anchor="middle">pacing by free agents</text><text class="s" x="247" y="111" text-anchor="middle">&amp; answer rate</text>
+          <path class="e a" d="M322 88 L362 88" marker-end="url(#ar2a)"/>
+          <rect class="nd hi" x="364" y="52" width="150" height="72" rx="8"/><text class="b" x="439" y="80" text-anchor="middle">Redis limiter</text><text class="s" x="439" y="97" text-anchor="middle">per-tenant CPS +</text><text class="s" x="439" y="111" text-anchor="middle">concurrency caps</text>
+          <path class="e a" d="M514 88 L554 88" marker-end="url(#ar2a)"/>
+          <rect class="grp" x="556" y="14" width="194" height="150" rx="10"/>
+          <text class="lbl" x="568" y="32">ASTERISK PBX POOL</text>
+          <rect class="nd" x="568" y="42" width="80" height="34" rx="6"/><text x="608" y="63" text-anchor="middle">PBX 1</text>
+          <rect class="nd" x="658" y="42" width="80" height="34" rx="6"/><text x="698" y="63" text-anchor="middle">PBX 2</text>
+          <rect class="nd" x="568" y="84" width="80" height="34" rx="6"/><text x="608" y="105" text-anchor="middle">PBX 3</text>
+          <rect class="nd" x="658" y="84" width="80" height="34" rx="6"/><text x="698" y="105" text-anchor="middle">PBX n</text>
+          <text class="s" x="653" y="146" text-anchor="middle">ARI · answered → agent bridge</text>
+          <rect class="nd" x="172" y="160" width="342" height="38" rx="8"/><text x="343" y="178" text-anchor="middle">Stale-call reconciler (cron)</text><text class="s" x="343" y="191" text-anchor="middle">frees stuck slots, settles balances for orphaned calls</text>
+          <path class="e d" d="M343 160 L343 124" marker-end="url(#ar2)"/>
+        </svg>
+        <p class="cap">Rate limits are enforced at a shared choke point, so a noisy campaign can't starve other tenants.</p>
+      </div>
+      <div class="grid">
+        <div>
+          <h4>What I did</h4>
+          <ul>
+            <li>Designed and built the dialer from scratch: campaign and lead management, the pacing controller, and call control over Asterisk ARI.</li>
+            <li>Built <b>per-tenant rate and concurrency limits in Redis</b> to protect the shared calling APIs and carrier capacity.</li>
+            <li>Added fan-out across many PBX nodes with dynamic publishers and consumers, so capacity grows by adding nodes.</li>
+          </ul>
+        </div>
+        <div>
+          <h4>Scaling 50×</h4>
+          <ul>
+            <li>Load-tested with a purpose-built campaign harness, then tuned timeouts, listener lifecycles and limiter thresholds.</li>
+            <li>Fixed memory leaks in the hot path and added PBX health alerts and a <b>stale-call reconciler</b> so stuck calls can't hold capacity or leave balances unsettled.</li>
+            <li>Took it from <b>10K to 500K calls/day</b>, with a peak of 750K.</li>
+          </ul>
+        </div>
+      </div>
+      <div class="tags"><span class="tag">Node.js</span><span class="tag">Redis</span><span class="tag">Asterisk ARI</span><span class="tag">RabbitMQ</span><span class="tag">Rate limiting</span><span class="tag">Load testing</span></div>
+    </article>
+
+    <!-- 3 -->
+    <article class="case reveal">
+      <div class="case-top">
+        <h3>AI call quality analysis</h3>
+        <span class="metric">Every recorded call, analysed</span>
+      </div>
+      <p class="problem">QA teams could only spot-check a small fraction of calls by hand. The goal was to transcribe and score every call, using each customer's own QA rubric, without the AI provider's latency or outages affecting call handling.</p>
+      <div class="diagram">
+        <svg viewBox="0 0 760 230" role="img" aria-label="Three call-completion producers enqueue AI jobs; a rate-limited consumer atomically claims each job, transcribes with Whisper or a diarized model, analyses with GPT-4o using the organisation's prompt, stores results and re-fires deferred webhooks">
+          <defs>
+            <marker id="ar3" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path class="ah" d="M0,0L10,5L0,10z"/></marker>
+            <marker id="ar3a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path class="ah a" d="M0,0L10,5L0,10z"/></marker>
+          </defs>
+          <text class="lbl" x="10" y="18">PRODUCERS</text>
+          <rect class="nd" x="10" y="28" width="118" height="30" rx="6"/><text x="69" y="47" text-anchor="middle">Outgoing calls</text>
+          <rect class="nd" x="10" y="66" width="118" height="30" rx="6"/><text x="69" y="85" text-anchor="middle">Incoming calls</text>
+          <rect class="nd" x="10" y="104" width="118" height="30" rx="6"/><text x="69" y="123" text-anchor="middle">Click-to-call API</text>
+          <path class="e" d="M128 43 C150 43,150 81,170 81"/><path class="e" d="M128 81 L170 81" marker-end="url(#ar3)"/><path class="e" d="M128 119 C150 119,150 81,170 81"/>
+          <rect class="nd" x="172" y="58" width="104" height="46" rx="8"/><text class="b" x="224" y="78" text-anchor="middle">Job queue</text><text class="s" x="224" y="94" text-anchor="middle">PENDING doc</text>
+          <path class="e a" d="M276 81 L304 81" marker-end="url(#ar3a)"/>
+          <rect class="nd hi" x="306" y="52" width="116" height="58" rx="8"/><text class="b" x="364" y="74" text-anchor="middle">Atomic claim</text><text class="s" x="364" y="90" text-anchor="middle">one winner per job</text><text class="s" x="364" y="103" text-anchor="middle">prefetch K + limiter</text>
+          <path class="e a" d="M422 81 L450 81" marker-end="url(#ar3a)"/>
+          <rect class="nd" x="452" y="40" width="130" height="82" rx="8"/><text class="b" x="517" y="62" text-anchor="middle">Transcribe</text><text class="s" x="517" y="80" text-anchor="middle">Whisper, or</text><text class="s" x="517" y="94" text-anchor="middle">speaker-diarized</text><text class="s" x="517" y="108" text-anchor="middle">per org setting</text>
+          <path class="e a" d="M582 81 L610 81" marker-end="url(#ar3a)"/>
+          <rect class="nd hi" x="612" y="40" width="138" height="82" rx="8"/><text class="b" x="681" y="62" text-anchor="middle">GPT-4o analysis</text><text class="s" x="681" y="80" text-anchor="middle">org's own prompt</text><text class="s" x="681" y="94" text-anchor="middle">summary · sentiment</text><text class="s" x="681" y="108" text-anchor="middle">keywords · QA answers</text>
+          <path class="e" d="M681 122 L681 160" marker-end="url(#ar3)"/>
+          <rect class="nd fast" x="560" y="162" width="190" height="52" rx="8"/><text class="b" x="655" y="184" text-anchor="middle">Store + publish completed</text><text class="s" x="655" y="201" text-anchor="middle">re-fire deferred client webhook</text>
+          <rect class="nd slow" x="172" y="162" width="250" height="52" rx="8"/><text class="b" x="297" y="184" text-anchor="middle">DLQ + stuck-job reconciler</text><text class="s" x="297" y="201" text-anchor="middle">bounded retries, manual reset endpoint</text>
+          <path class="e d" d="M364 110 L364 162" marker-end="url(#ar3)"/>
+        </svg>
+        <p class="cap">Three flows feed one hardened consumer. Each organisation's settings decide how its calls are analysed.</p>
+      </div>
+      <div class="grid">
+        <div>
+          <h4>What I did</h4>
+          <ul>
+            <li>Built the module: <b>Whisper transcription</b> of every call, with <b>GPT-4o</b> summaries, sentiment, keywords and rubric Q&amp;A.</li>
+            <li>Made it <b>multi-tenant by configuration</b>: each organisation has its own prompt template and transcription mode, so onboarding a new QA rubric needs no code change.</li>
+            <li>Built the React dashboards QA managers use to browse the results.</li>
+          </ul>
+        </div>
+        <div>
+          <h4>Reliability</h4>
+          <ul>
+            <li>An <b>atomic claim</b> means the consumer, the reconciler, manual retries and resets can't process the same job twice.</li>
+            <li>Bounded concurrency protects the provider rate limits. A DLQ and a reconciler recover stuck jobs.</li>
+            <li>Customers can choose to <b>defer their call-completed webhook</b> until the analysis is ready, so their CRM receives one complete payload.</li>
+          </ul>
+        </div>
+      </div>
+      <div class="tags"><span class="tag">OpenAI Whisper</span><span class="tag">GPT-4o</span><span class="tag">Prompt engineering</span><span class="tag">RabbitMQ</span><span class="tag">MongoDB</span><span class="tag">React</span></div>
+    </article>
+
+    <!-- 4 -->
+    <article class="case reveal">
+      <div class="case-top">
+        <h3>Real-time AI voice bots &amp; voice streaming</h3>
+        <span class="metric">100K+ streamed calls/day · 200K peak</span>
+      </div>
+      <p class="problem">To make phone calls conversational, live call audio has to leave the PBX, reach a speech-to-text, LLM and text-to-speech loop, and come back fast enough to sound natural. The bot also has to stop talking the moment the caller interrupts.</p>
+      <div class="diagram">
+        <svg viewBox="0 0 760 170" role="img" aria-label="Caller audio flows from Asterisk via external media to a streaming bridge and over WebSocket to a bot running STT, LLM and TTS, with barge-in cancelling playback">
+          <defs>
+            <marker id="ar4" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path class="ah" d="M0,0L10,5L0,10z"/></marker>
+            <marker id="ar4a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path class="ah a" d="M0,0L10,5L0,10z"/></marker>
+          </defs>
+          <rect class="nd" x="10" y="52" width="90" height="48" rx="8"/><text class="b" x="55" y="81" text-anchor="middle">Caller</text>
+          <path class="e" d="M100 76 L136 76" marker-start="url(#ar4)" marker-end="url(#ar4)"/>
+          <rect class="nd" x="138" y="44" width="120" height="64" rx="8"/><text class="b" x="198" y="70" text-anchor="middle">Asterisk</text><text class="s" x="198" y="88" text-anchor="middle">ARI external media</text>
+          <path class="e" d="M258 76 L294 76" marker-start="url(#ar4)" marker-end="url(#ar4)"/><text class="s" x="276" y="66" text-anchor="middle">RTP</text>
+          <rect class="nd hi" x="296" y="44" width="140" height="64" rx="8"/><text class="b" x="366" y="68" text-anchor="middle">Stream bridge</text><text class="s" x="366" y="85" text-anchor="middle">jitter / drift metrics</text><text class="s" x="366" y="98" text-anchor="middle">health · reconnect</text>
+          <path class="e a" d="M436 76 L472 76" marker-start="url(#ar4a)" marker-end="url(#ar4a)"/><text class="s" x="454" y="66" text-anchor="middle">WS</text>
+          <rect class="grp" x="474" y="14" width="276" height="124" rx="10"/>
+          <text class="lbl" x="486" y="32">VOICE BOT</text>
+          <rect class="nd" x="486" y="44" width="74" height="40" rx="6"/><text x="523" y="68" text-anchor="middle">STT</text>
+          <rect class="nd hi" x="575" y="44" width="74" height="40" rx="6"/><text x="612" y="68" text-anchor="middle">LLM</text>
+          <rect class="nd" x="664" y="44" width="74" height="40" rx="6"/><text x="701" y="68" text-anchor="middle">TTS</text>
+          <path class="e" d="M560 64 L573 64" marker-end="url(#ar4)"/><path class="e" d="M649 64 L662 64" marker-end="url(#ar4)"/>
+          <path class="e d a" d="M523 84 C523 120,701 120,701 86" marker-end="url(#ar4a)"/>
+          <text class="s" x="612" y="128" text-anchor="middle">barge-in: caller speech cancels TTS playback</text>
+        </svg>
+        <p class="cap">Streaming at every stage, with first audio returned before the LLM has finished its response.</p>
+      </div>
+      <div class="grid">
+        <div>
+          <h4>What I did</h4>
+          <ul>
+            <li>Built the streaming <b>STT → LLM → TTS</b> pipeline and connected the Asterisk PBX to bots over <b>WebSockets</b>, with barge-in.</li>
+            <li>Built the voice-streaming service for incoming and outgoing calls. It now carries <b>100K+ calls/day</b>.</li>
+          </ul>
+        </div>
+        <div>
+          <h4>Production hardening</h4>
+          <ul>
+            <li>Added client-side and server-side stream metrics (packet interval, clock drift, low-network detection) so audio problems can be diagnosed rather than guessed at.</li>
+            <li>Added event reconnection, health checks and alerting, and fed post-call events into the shared exchange.</li>
+          </ul>
+        </div>
+      </div>
+      <div class="tags"><span class="tag">Asterisk ARI</span><span class="tag">WebSockets</span><span class="tag">RTP</span><span class="tag">Speech-to-text</span><span class="tag">LLMs</span><span class="tag">Text-to-speech</span></div>
+    </article>
+
+    <!-- 5 -->
+    <article class="case reveal">
+      <div class="case-top">
+        <h3>Reports product, conceived and built solo</h3>
+        <span class="metric">Peak memory flat at ~350 MB · 10–30 s → ms</span>
+      </div>
+      <p class="problem">Large tenants (350K+ calls/day) crashed exports with out-of-memory errors, and the dialer latency report took 10–30 seconds to load. Managers had no self-serve way to export what they needed.</p>
+      <div class="diagram">
+        <svg viewBox="0 0 760 150" role="img" aria-label="Export request goes to a RabbitMQ worker which streams a MongoDB cursor through a CSV transform and gzip into an S3 upload with backpressure, then sends a presigned link">
+          <defs>
+            <marker id="ar5" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path class="ah" d="M0,0L10,5L0,10z"/></marker>
+            <marker id="ar5a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path class="ah a" d="M0,0L10,5L0,10z"/></marker>
+          </defs>
+          <rect class="nd" x="10" y="40" width="96" height="46" rx="8"/><text class="b" x="58" y="60" text-anchor="middle">React UI</text><text class="s" x="58" y="76" text-anchor="middle">filters · export</text>
+          <path class="e" d="M106 63 L130 63" marker-end="url(#ar5)"/>
+          <rect class="nd" x="132" y="40" width="96" height="46" rx="8"/><text class="b" x="180" y="60" text-anchor="middle">Worker</text><text class="s" x="180" y="76" text-anchor="middle">via RabbitMQ</text>
+          <path class="e" d="M228 63 L252 63" marker-end="url(#ar5)"/>
+          <rect class="grp" x="254" y="14" width="356" height="98" rx="10"/>
+          <text class="lbl" x="266" y="32">NODE STREAM PIPELINE · BACKPRESSURE</text>
+          <rect class="nd hi" x="266" y="44" width="96" height="40" rx="6"/><text x="314" y="68" text-anchor="middle">Mongo cursor</text>
+          <rect class="nd hi" x="382" y="44" width="68" height="40" rx="6"/><text x="416" y="68" text-anchor="middle">→ CSV</text>
+          <rect class="nd hi" x="470" y="44" width="58" height="40" rx="6"/><text x="499" y="68" text-anchor="middle">gzip</text>
+          <rect class="nd hi" x="546" y="44" width="54" height="40" rx="6"/><text x="573" y="68" text-anchor="middle">S3</text>
+          <path class="e a" d="M362 64 L380 64" marker-end="url(#ar5a)"/><path class="e a" d="M450 64 L468 64" marker-end="url(#ar5a)"/><path class="e a" d="M528 64 L544 64" marker-end="url(#ar5a)"/>
+          <text class="s" x="432" y="102" text-anchor="middle">rows never all in memory, so heap stays flat whatever the export size</text>
+          <path class="e" d="M610 63 L634 63" marker-end="url(#ar5)"/>
+          <rect class="nd fast" x="636" y="30" width="114" height="66" rx="8"/><text class="b" x="693" y="52" text-anchor="middle">Delivered</text><text class="s" x="693" y="69" text-anchor="middle">presigned URL</text><text class="s" x="693" y="83" text-anchor="middle">+ email · live progress</text>
+          <text class="s" x="180" y="132" text-anchor="middle">progress pushed over Socket.IO</text>
+          <path class="e d" d="M180 86 L180 120"/>
+        </svg>
+        <p class="cap">Separately, p50/p90/p99 dialer latency is precomputed every 5 minutes, so the report reads a small rollup instead of scanning raw calls.</p>
+      </div>
+      <div class="grid">
+        <div>
+          <h4>What I did</h4>
+          <ul>
+            <li>Owned the product end to end, solo: requirements, the React UI, the Node.js backend and delivery.</li>
+            <li>Built <b>call and agent productivity reports</b> (talk, wrap-up, idle and disposition time) with filters, async generation, live progress, presigned S3 downloads and email delivery.</li>
+          </ul>
+        </div>
+        <div>
+          <h4>Performance</h4>
+          <ul>
+            <li>Streamed exports from a <b>MongoDB cursor through CSV and gzip into S3</b> with Node.js backpressure. This fixed the OOM crashes and kept peak memory at about 350 MB.</li>
+            <li>Precomputed percentile rollups cut the latency report's load time from <b>10–30 s to milliseconds</b>. Aggregation and index tuning sped up the remaining reports.</li>
+          </ul>
+        </div>
+      </div>
+      <div class="tags"><span class="tag">Node.js streams</span><span class="tag">MongoDB aggregation</span><span class="tag">AWS S3</span><span class="tag">RabbitMQ</span><span class="tag">React</span><span class="tag">Socket.IO</span></div>
+    </article>
+
+    <!-- 6 -->
+    <article class="case reveal">
+      <div class="case-top">
+        <h3>Agent-facing React applications</h3>
+        <span class="metric">−30% API calls</span>
+      </div>
+      <p class="problem">Agents use the product all day, so the interface has to stay fast with large lists, update live without hammering the API, and work where agents already are, including inside their CRM.</p>
+      <div class="grid">
+        <div>
+          <h4>What I built</h4>
+          <ul>
+            <li>The <b>agent dashboard</b> and an in-browser <b>WebRTC softphone</b> (SIP over WebSocket).</li>
+            <li>An embeddable <b>dialer widget</b> and a <b>native HubSpot calling extension</b>, plus HubSpot and Zoho CRM integrations.</li>
+            <li>Campaign management UI, the admin console and AI QA analytics dashboards.</li>
+          </ul>
+        </div>
+        <div>
+          <h4>How</h4>
+          <ul>
+            <li>Replaced UI polling with <b>Socket.IO push</b> (with a Redis adapter for multiple instances), cutting API calls by 30%.</li>
+            <li>Used Redux, reusable Material UI components, lazy loading, memoization and <b>virtualized lists</b> for screens with thousands of rows.</li>
+          </ul>
+        </div>
+      </div>
+      <div class="tags"><span class="tag">React</span><span class="tag">Redux</span><span class="tag">Material UI</span><span class="tag">WebRTC</span><span class="tag">JsSIP</span><span class="tag">Socket.IO</span><span class="tag">HubSpot SDK</span></div>
+    </article>
+  </div>
+</section>
+
+<!-- PLATFORM MAP -->
+<section id="platform">
+  <div class="wrap">
+    <div class="sec-h"><span class="n">02</span><h2>Across the platform</h2></div>
+    <p class="sec-sub">The work above sits inside a microservice platform of about 50 services. I have committed to 39 of them, from the PBX call-control layer to the UI. The bars show my commit counts.</p>
+
+    <div class="chart-card reveal">
+      <h3>Commits per quarter</h3>
+      <p>Non-merge commits across all platform repositories, Q2 2023 – Q3 2026</p>
+      <svg id="activity" viewBox="0 0 760 200" role="img" aria-label="Bar chart of commits per quarter, rising from 127 in Q2 2023 to a peak of 550 in Q2 2025"></svg>
+    </div>
+
+    <div class="svc-grid" id="svcGrid"></div>
+  </div>
+</section>
+
+<!-- EXPERIENCE -->
+<section id="experience">
+  <div class="wrap">
+    <div class="sec-h"><span class="n">03</span><h2>Experience</h2></div>
+    <p class="sec-sub">Telephony SaaS, core banking, reinsurance and an internship at Amazon.</p>
+    <div class="tl">
+      <div class="job reveal">
+        <div class="job-h"><h3>Full Stack Developer</h3><span class="when">Oct 2022 – Present</span></div>
+        <div class="org">Matr Innovations (formerly Ten20 Infomedia) · Hyderabad</div>
+        <p>Core developer on <b>Doosra</b> and <b>Alohaa</b>, cloud telephony SaaS platforms used by 50+ businesses and 1,000+ agents and handling 1.1M+ calls/day across predictive dialing, voice APIs and voice streaming. I often act as product owner.</p>
+        <ul>
+          <li>Designed the event-driven post-call architecture (~5M msgs/day) and made billing idempotent.</li>
+          <li>Built the predictive dialer and scaled it from 10K to 500K calls/day.</li>
+          <li>Built the AI voice bots, AI call QA analysis and the reports product.</li>
+          <li>Built a voice and SMS broadcast platform (4 microservices) and a programmable voice API (500K calls/day, 750K peak) with webhook callbacks and IVR analytics.</li>
+          <li>Built HubSpot and Zoho CRM integrations, an in-house OTP classifier that replaced a paid service, and production monitoring.</li>
+        </ul>
+      </div>
+      <div class="job past reveal">
+        <div class="job-h"><h3>Associate Product Developer</h3><span class="when">Oct 2021 – Oct 2022</span></div>
+        <div class="org">EdgeVerve Systems (Infosys)</div>
+        <p>Developed and extended Java REST APIs for <b>Finacle</b>, Infosys's core banking platform used by banks worldwide. Built product features with AngularJS, Java and Oracle SQL, and resolved production defects.</p>
+      </div>
+      <div class="job past reveal">
+        <div class="job-h"><h3>Associate Professional Software Engineer</h3><span class="when">Jan 2021 – Oct 2021</span></div>
+        <div class="org">DXC Technology</div>
+        <p>Built full-stack features for <b>Swiss Re</b>, a global reinsurer, with Java, JSP and SQL Server in Agile Scrum teams.</p>
+      </div>
+      <div class="job past reveal">
+        <div class="job-h"><h3>Software Development Engineer Intern</h3><span class="when">Jun 2019 – Sep 2019</span></div>
+        <div class="org">Amazon · FinTech</div>
+        <p>Built internal tools for finance problems across Amazon's businesses, using Python and React. Built Python data processing on AWS to manage large volumes of financial data.</p>
+      </div>
+      <div class="job past reveal">
+        <div class="job-h"><h3>B.Tech, Computer Science &amp; Engineering</h3><span class="when">2016 – 2020</span></div>
+        <div class="org">VNR Vignana Jyothi Institute of Engineering and Technology</div>
+        <p>CGPA 8.7</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section id="skills">
+  <div class="wrap">
+    <div class="sec-h"><span class="n">04</span><h2>Toolbox</h2></div>
+    <p class="sec-sub">What I use day to day, grouped by where it sits in the stack.</p>
+    <div class="skills" id="skillGrid"></div>
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<section id="projects">
+  <div class="wrap">
+    <div class="sec-h"><span class="n">05</span><h2>Side projects</h2></div>
+    <p class="sec-sub">Work outside the day job.</p>
+    <div class="proj">
+      <div class="pcard reveal">
+        <h3>PDF Q&amp;A Assistant</h3>
+        <p>A retrieval-augmented generation app. It chunks and embeds uploaded PDFs, retrieves the relevant passages for each question and sends them to an LLM for grounded answers, keeping conversation context across turns.</p>
+        <div class="tags"><span class="tag">RAG</span><span class="tag">Embeddings</span><span class="tag">Vector search</span><span class="tag">LLM</span></div>
+      </div>
+      <div class="pcard reveal">
+        <h3>Employee Background Verification Platform</h3>
+        <p>Freelance build for a client that digitized their employee background-verification workflow, cutting onboarding time by 40%.</p>
+        <div class="tags"><span class="tag">React</span><span class="tag">Node.js</span><span class="tag">MongoDB</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact" class="contact">
+  <div class="wrap">
+    <h2>Let's build something that scales.</h2>
+    <p>I'm interested in backend, full-stack and AI/voice engineering roles. The quickest way to reach me is email.</p>
+    <div class="cta">
+      <a class="btn primary" href="mailto:akhilreddy.donakonda@gmail.com">akhilreddy.donakonda@gmail.com</a>
+      <a class="btn" href="https://github.com/akhilreddy1636" target="_blank" rel="noopener">github.com/akhilreddy1636</a>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <span>© <span id="yr"></span> Akhil Reddy Donakonda</span>
+    <span>Hand-written HTML &amp; CSS · hosted on GitHub Pages</span>
+  </div>
+</footer>
+
+<script>
+(function(){
+  // theme toggle (persisted per viewer; safe if storage is unavailable)
+  var root=document.documentElement, KEY='theme';
+  try{var saved=localStorage.getItem(KEY); if(saved) root.setAttribute('data-theme',saved);}catch(e){}
+  document.getElementById('themeBtn').addEventListener('click',function(){
+    var cur=root.getAttribute('data-theme') || (matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light');
+    var next=cur==='dark'?'light':'dark'; root.setAttribute('data-theme',next);
+    try{localStorage.setItem(KEY,next);}catch(e){}
+  });
+  // mobile menu
+  var menu=document.getElementById('menu');
+  document.getElementById('menuBtn').addEventListener('click',function(){menu.classList.toggle('open');});
+  menu.addEventListener('click',function(e){if(e.target.tagName==='A')menu.classList.remove('open');});
+  document.getElementById('yr').textContent=new Date().getFullYear();
+
+  // activity chart
+  var q=[["Q2'23",127],["Q3'23",214],["Q4'23",128],["Q1'24",212],["Q2'24",277],["Q3'24",279],["Q4'24",295],["Q1'25",401],["Q2'25",550],["Q3'25",290],["Q4'25",455],["Q1'26",268],["Q2'26",190],["Q3'26",215]];
+  var svg=document.getElementById('activity'), NS='http://www.w3.org/2000/svg', W=760,H=200,pl=8,pr=8,pt=22,pb=26;
+  var max=600, bw=(W-pl-pr)/q.length, html='';
+  [0,200,400,600].forEach(function(v){var y=pt+(H-pt-pb)*(1-v/max); html+='<line x1="'+pl+'" x2="'+(W-pr)+'" y1="'+y+'" y2="'+y+'"/>';});
+  q.forEach(function(d,i){
+    var h=(H-pt-pb)*d[1]/max, x=pl+i*bw+bw*.18, w=bw*.64, y=H-pb-h;
+    html+='<rect class="bar" rx="3" x="'+x+'" y="'+y+'" width="'+w+'" height="'+h+'"><title>'+d[0]+': '+d[1]+' commits</title></rect>';
+    html+='<text class="v" x="'+(x+w/2)+'" y="'+(y-5)+'" text-anchor="middle">'+d[1]+'</text>';
+    html+='<text x="'+(x+w/2)+'" y="'+(H-8)+'" text-anchor="middle">'+d[0]+'</text>';
+  });
+  svg.innerHTML=html;
+
+  // service map
+  var groups=[
+    {t:'Dialer & call orchestration',d:'Campaigns, predictive pacing, click-to-call and the public voice API.',r:[['campaign-outgoing',771],['public-voice-apis',355],['outgoing-calls',330],['predictive-queue-controller',215],['incoming-calls',189],['virtual-numbers',161],['call-recovery',344]]},
+    {t:'PBX call control (Asterisk ARI)',d:'Services that drive Asterisk channels and bridges and stream live media.',r:[['ari-central',223],['ari-outgoing-calls',155],['ari-voice-stream',120],['ari-incoming-calls',81],['ari-broadcast',45],['ari-voice-api',37]]},
+    {t:'Post-call, data & AI',d:'The event consumers, analytics and the AI QA pipeline.',r:[['call-post-processor',264],['analytics-reports',274],['jobs-scheduler',117],['communication (email/SMS)',89],['voice-stream (biz)',75],['ai-qa-analysis',19]]},
+    {t:'Platform & frontend',d:'The shared schema library, org and user services, and the React apps.',r:[['business-dashboard (React)',783],['shared-schema',339],['admin-console (React)',289],['organization',246],['db-migrations',242],['users',97]]}
+  ];
+  var MAXC=800, g=document.getElementById('svcGrid'), out='';
+  groups.forEach(function(G){
+    out+='<div class="svc reveal"><h3>'+G.t+'</h3><p>'+G.d+'</p>';
+    G.r.sort(function(a,b){return b[1]-a[1]}).forEach(function(r){
+      out+='<div class="repo"><span>'+r[0]+'</span><em>'+r[1]+'</em><div class="bar"><i style="width:'+Math.max(3,r[1]/MAXC*100)+'%"></i></div></div>';
+    });
+    out+='</div>';
+  });
+  g.innerHTML=out;
+
+  // skills
+  var skills=[
+    ['Backend',['Node.js','Express.js','REST APIs','Microservices','WebSockets','Java']],
+    ['Architecture',['System design','Event-driven architecture','Message queues','Idempotency','Distributed systems','Observability']],
+    ['Data & messaging',['MongoDB','Redis','RabbitMQ','MySQL','Oracle','SQL Server','Webhooks','Cron']],
+    ['Frontend',['React.js','Redux','Material UI','Socket.IO','WebRTC','AngularJS','HTML5 / CSS3']],
+    ['AI / ML',['LLMs','GPT-4o','Whisper','Claude API','RAG','Prompt engineering','STT / TTS']],
+    ['Voice & telephony',['Asterisk ARI','VoIP / SIP','IVR','Predictive dialer','Voice bots','RTP streaming']],
+    ['Cloud & DevOps',['AWS (EC2, S3, Lambda)','GCP','Docker','CI/CD','Sentry','Linux','Git']],
+    ['Languages',['JavaScript (ES6+)','Java','Python','SQL']]
+  ];
+  document.getElementById('skillGrid').innerHTML=skills.map(function(s){
+    return '<div class="sk reveal"><h3>'+s[0]+'</h3><div class="chips">'+s[1].map(function(c){return '<span class="chip">'+c+'</span>'}).join('')+'</div></div>';
+  }).join('');
+
+  // reveal on scroll
+  var els=document.querySelectorAll('.reveal');
+  if('IntersectionObserver' in window){
+    var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}})},{rootMargin:'0px 0px -8% 0px'});
+    els.forEach(function(el){io.observe(el)});
+  } else els.forEach(function(el){el.classList.add('in')});
+})();
+</script>
+</body>
+</html>
